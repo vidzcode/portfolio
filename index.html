@@ -1,0 +1,2416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Vidushi Singh - First-Year B.Tech Computer Science & Engineering student at JECRC University, Jaipur. Exploring technology, AI, communication, and software engineering fundamentals.">
+  <meta name="author" content="Vidushi Singh">
+  <title>Vidushi Singh | First-Year CSE Portfolio</title>
+
+  <!-- Typography: Outfit for headers, Inter for readable body text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       1. CSS VARIABLES & DESIGN TOKENS
+       ========================================================================== */
+    :root {
+      /* Dark Navy and Charcoal Background Palette */
+      --bg-primary: #090d16;
+      --bg-secondary: #0f172a;
+      --bg-card: #131c31;
+      --bg-card-hover: #18233e;
+      --bg-glass: rgba(15, 23, 42, 0.78);
+      --bg-glass-card: rgba(19, 28, 49, 0.7);
+
+      /* Mint Green, Lavender, and Blue Accents */
+      --accent-mint: #34d399;
+      --accent-mint-glow: rgba(52, 211, 153, 0.22);
+      --accent-lavender: #a78bfa;
+      --accent-lavender-glow: rgba(167, 139, 250, 0.22);
+      --accent-blue: #38bdf8;
+      --accent-blue-glow: rgba(56, 189, 248, 0.2);
+
+      /* Accessible Text Hierarchy */
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --text-highlight: #ffffff;
+
+      /* Borders & Shadows */
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-light: rgba(255, 255, 255, 0.15);
+      --border-accent-mint: rgba(52, 211, 153, 0.38);
+      --border-accent-lavender: rgba(167, 139, 250, 0.38);
+
+      --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+      --shadow-md: 0 8px 24px -4px rgba(0, 0, 0, 0.45);
+      --shadow-lg: 0 16px 36px -6px rgba(0, 0, 0, 0.55);
+      --shadow-glow-mint: 0 0 25px rgba(52, 211, 153, 0.25);
+      --shadow-glow-lavender: 0 0 25px rgba(167, 139, 250, 0.25);
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+
+      --transition-fast: 0.18s ease;
+      --transition-normal: 0.28s ease;
+      --container-max: 1140px;
+      --nav-height: 74px;
+    }
+
+    /* ==========================================================================
+       2. RESET & BASE STYLES
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      color-scheme: dark;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      line-height: 1.65;
+      overflow-x: hidden;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      position: relative;
+    }
+
+    /* Ambient background gradient lights */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -120px;
+      right: -80px;
+      width: 520px;
+      height: 520px;
+      background: radial-gradient(circle, var(--accent-lavender-glow) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(80px);
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: 5%;
+      left: -100px;
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, var(--accent-mint-glow) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(90px);
+    }
+
+    /* Skip link for screen readers and keyboard navigation */
+    .skip-to-content {
+      position: absolute;
+      top: -60px;
+      left: 20px;
+      background: var(--accent-mint);
+      color: #06101e;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      text-decoration: none;
+      z-index: 9999;
+      transition: top var(--transition-fast);
+    }
+    .skip-to-content:focus {
+      top: 16px;
+      outline: 2px solid #ffffff;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    img, svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 24px;
+      padding-right: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ==========================================================================
+       3. NAVIGATION BAR
+       ========================================================================== */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--nav-height);
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      z-index: 1000;
+      transition: background var(--transition-normal), border-color var(--transition-normal);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(167, 139, 250, 0.25), rgba(52, 211, 153, 0.25));
+      border: 1px solid var(--border-light);
+      color: var(--accent-mint);
+      font-weight: 800;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      line-height: 1.15;
+      font-size: 1.05rem;
+      color: var(--text-highlight);
+    }
+
+    .brand-sub {
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      font-family: var(--font-body);
+      font-weight: 400;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      gap: 6px;
+    }
+
+    .nav-item a {
+      display: inline-block;
+      padding: 8px 14px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      border-radius: var(--radius-sm);
+      transition: color var(--transition-fast), background var(--transition-fast);
+    }
+
+    .nav-item a:hover {
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-item a.active {
+      color: var(--accent-mint);
+      background: rgba(52, 211, 153, 0.08);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: linear-gradient(135deg, #1d283f, #152033);
+      border: 1px solid var(--border-accent-lavender);
+      color: var(--accent-lavender);
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-left: 8px;
+      transition: all var(--transition-fast);
+    }
+
+    .nav-cta:hover {
+      background: var(--accent-lavender);
+      color: #0b0f19;
+      box-shadow: var(--shadow-glow-lavender);
+      transform: translateY(-1px);
+    }
+
+    /* Mobile Menu Toggle */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      padding: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: var(--text-primary);
+      border-radius: 2px;
+      transition: transform var(--transition-normal), opacity var(--transition-normal);
+    }
+
+    .menu-toggle.is-open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .menu-toggle.is-open span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-toggle.is-open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* ==========================================================================
+       4. HERO SECTION
+       ========================================================================== */
+    .hero-section {
+      min-height: 100vh;
+      padding-top: calc(var(--nav-height) + 40px);
+      padding-bottom: 70px;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(52, 211, 153, 0.09);
+      border: 1px solid var(--border-accent-mint);
+      color: var(--accent-mint);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      font-size: 0.82rem;
+      font-weight: 500;
+      width: fit-content;
+      letter-spacing: 0.02em;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--accent-mint);
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .pulse-dot::after {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 1.5px solid var(--accent-mint);
+      animation: pulseAnimation 2s infinite;
+    }
+
+    @keyframes pulseAnimation {
+      0% { transform: scale(0.8); opacity: 1; }
+      100% { transform: scale(1.8); opacity: 0; }
+    }
+
+    .hero-headline {
+      font-family: var(--font-heading);
+      font-size: clamp(2.35rem, 4.3vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.14;
+      letter-spacing: -0.02em;
+      color: var(--text-highlight);
+    }
+
+    .hero-headline .gradient-text {
+      background: linear-gradient(135deg, #38bdf8 0%, #a78bfa 55%, #34d399 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    .hero-intro {
+      font-size: 1.08rem;
+      line-height: 1.72;
+      color: var(--text-secondary);
+      max-width: 580px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 26px;
+      border-radius: var(--radius-md);
+      font-size: 0.94rem;
+      font-weight: 600;
+      transition: all var(--transition-normal);
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-mint), #10b981);
+      color: #06141d;
+      box-shadow: 0 4px 18px rgba(52, 211, 153, 0.28);
+    }
+    .btn-primary:hover {
+      box-shadow: 0 6px 24px rgba(52, 211, 153, 0.42);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-light);
+      color: var(--text-primary);
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--accent-lavender);
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    /* Hero Profile Snapshot Card */
+    .hero-card-wrapper {
+      position: relative;
+    }
+
+    .hero-card {
+      background: linear-gradient(145deg, rgba(23, 33, 56, 0.88), rgba(15, 23, 42, 0.96));
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-mint), var(--accent-blue), var(--accent-lavender));
+    }
+
+    .profile-card-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 22px;
+    }
+
+    .profile-avatar-ph {
+      width: 58px;
+      height: 58px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(167, 139, 250, 0.2), rgba(56, 189, 248, 0.2));
+      border: 1px solid var(--border-accent-lavender);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-lavender);
+      font-size: 1.4rem;
+      font-weight: 700;
+      font-family: var(--font-heading);
+    }
+
+    .profile-meta h3 {
+      font-family: var(--font-heading);
+      font-size: 1.18rem;
+      color: var(--text-highlight);
+    }
+
+    .profile-meta p {
+      font-size: 0.83rem;
+      color: var(--accent-mint);
+      font-weight: 500;
+    }
+
+    .profile-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.88rem;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.025);
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .stat-label {
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stat-val {
+      font-weight: 600;
+      color: var(--text-primary);
+      text-align: right;
+    }
+
+    .hero-card-footer {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .copy-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: var(--radius-sm);
+      background: rgba(167, 139, 250, 0.1);
+      border: 1px solid var(--border-accent-lavender);
+      color: var(--accent-lavender);
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: background var(--transition-fast);
+    }
+    .copy-pill:hover {
+      background: rgba(167, 139, 250, 0.2);
+    }
+
+    /* ==========================================================================
+       5. GENERAL SECTION UTILITIES
+       ========================================================================== */
+    section {
+      padding: 85px 0;
+      position: relative;
+    }
+
+    .section-header {
+      margin-bottom: 44px;
+      max-width: 680px;
+    }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-lavender);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.85rem, 3.2vw, 2.45rem);
+      font-weight: 700;
+      line-height: 1.22;
+      color: var(--text-highlight);
+      letter-spacing: -0.015em;
+    }
+
+    .section-desc {
+      margin-top: 10px;
+      font-size: 1.02rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal);
+      position: relative;
+    }
+
+    .card:hover {
+      border-color: var(--border-accent-lavender);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* ==========================================================================
+       6. ABOUT ME SECTION
+       ========================================================================== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 36px;
+      align-items: start;
+    }
+
+    .about-narrative {
+      background: linear-gradient(145deg, rgba(19, 28, 49, 0.75), rgba(15, 23, 42, 0.9));
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 34px;
+    }
+
+    .about-narrative p {
+      color: var(--text-secondary);
+      font-size: 1.02rem;
+      margin-bottom: 18px;
+      line-height: 1.75;
+    }
+
+    .about-narrative p:last-child {
+      margin-bottom: 0;
+    }
+
+    .about-narrative strong {
+      color: var(--text-highlight);
+      font-weight: 600;
+    }
+
+    .about-pillars {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .pillar-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      transition: border-color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .pillar-card:hover {
+      border-color: var(--border-light);
+      transform: translateX(4px);
+    }
+
+    .pillar-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .icon-mint {
+      background: rgba(52, 211, 153, 0.12);
+      color: var(--accent-mint);
+      border: 1px solid rgba(52, 211, 153, 0.25);
+    }
+    .icon-lavender {
+      background: rgba(167, 139, 250, 0.12);
+      color: var(--accent-lavender);
+      border: 1px solid rgba(167, 139, 250, 0.25);
+    }
+    .icon-blue {
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--accent-blue);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+    }
+
+    .pillar-text h4 {
+      font-family: var(--font-heading);
+      font-size: 1.04rem;
+      color: var(--text-highlight);
+      margin-bottom: 4px;
+    }
+
+    .pillar-text p {
+      font-size: 0.86rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       7. EDUCATION SECTION
+       ========================================================================== */
+    .education-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      position: relative;
+    }
+
+    .education-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 24px;
+      position: relative;
+      transition: transform var(--transition-normal), border-color var(--transition-normal);
+    }
+
+    .education-card:hover {
+      border-color: var(--border-accent-mint);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .edu-icon-container {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(52, 211, 153, 0.18), rgba(56, 189, 248, 0.12));
+      border: 1px solid var(--border-accent-mint);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-mint);
+      flex-shrink: 0;
+    }
+
+    .edu-content {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .edu-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .edu-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .badge-ongoing {
+      background: rgba(52, 211, 153, 0.14);
+      color: var(--accent-mint);
+      border: 1px solid var(--border-accent-mint);
+    }
+
+    .badge-completed {
+      background: rgba(167, 139, 250, 0.14);
+      color: var(--accent-lavender);
+      border: 1px solid var(--border-accent-lavender);
+    }
+
+    .edu-degree {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-highlight);
+      line-height: 1.3;
+    }
+
+    .edu-institution {
+      font-size: 0.98rem;
+      font-weight: 500;
+      color: var(--accent-blue);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .edu-details {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .edu-footer-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ==========================================================================
+       8. SKILLS AND INTERESTS SECTION
+       ========================================================================== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+
+    .skills-category-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+    }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .cat-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .category-title {
+      font-family: var(--font-heading);
+      font-size: 1.22rem;
+      font-weight: 700;
+      color: var(--text-highlight);
+    }
+
+    .category-subtitle {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+
+    .skill-items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .skill-item {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+      transition: background var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .skill-item:hover {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: var(--border-light);
+    }
+
+    .skill-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .skill-name {
+      font-weight: 600;
+      font-size: 0.98rem;
+      color: var(--text-primary);
+    }
+
+    .skill-level-tag {
+      font-size: 0.74rem;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      font-weight: 500;
+    }
+
+    .tag-foundation {
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--accent-blue);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+    }
+
+    .tag-interest {
+      background: rgba(167, 139, 250, 0.12);
+      color: var(--accent-lavender);
+      border: 1px solid rgba(167, 139, 250, 0.25);
+    }
+
+    .skill-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .skills-note-banner {
+      margin-top: 26px;
+      background: rgba(167, 139, 250, 0.06);
+      border: 1px dashed var(--border-accent-lavender);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+    }
+
+    .skills-note-banner svg {
+      flex-shrink: 0;
+      color: var(--accent-lavender);
+      margin-top: 2px;
+    }
+
+    /* ==========================================================================
+       9. PROJECTS SECTION (Honest & Refined Placeholder)
+       ========================================================================== */
+    .projects-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .placeholder-card {
+      background: linear-gradient(145deg, rgba(19, 28, 49, 0.8), rgba(15, 23, 42, 0.9));
+      border: 1px dashed var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 46px 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .placeholder-icon-wrap {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 20px auto;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(52, 211, 153, 0.15), rgba(167, 139, 250, 0.15));
+      border: 1px solid var(--border-accent-mint);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-mint);
+    }
+
+    .placeholder-quote {
+      font-family: var(--font-heading);
+      font-size: 1.32rem;
+      font-weight: 600;
+      color: var(--text-highlight);
+      max-width: 620px;
+      margin: 0 auto 14px auto;
+      line-height: 1.45;
+    }
+
+    .placeholder-subtext {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      max-width: 580px;
+      margin: 0 auto 28px auto;
+      line-height: 1.6;
+    }
+
+    .roadmap-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 780px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .step-box {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 16px;
+    }
+
+    .step-num {
+      display: inline-block;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--accent-mint);
+      background: rgba(52, 211, 153, 0.1);
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+
+    .step-title {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .step-desc {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    /* ==========================================================================
+       10. CERTIFICATIONS & ACHIEVEMENTS SECTION (Honest Placeholder)
+       ========================================================================== */
+    .cert-placeholder-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 38px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .cert-icon-wrap {
+      width: 74px;
+      height: 74px;
+      border-radius: 20px;
+      background: rgba(167, 139, 250, 0.12);
+      border: 1px solid var(--border-accent-lavender);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-lavender);
+      flex-shrink: 0;
+    }
+
+    .cert-text h3 {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      color: var(--text-highlight);
+      margin-bottom: 8px;
+    }
+
+    .cert-text p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      max-width: 660px;
+    }
+
+    /* ==========================================================================
+       11. CAREER GOALS SECTION
+       ========================================================================== */
+    .goals-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .goal-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      transition: all var(--transition-normal);
+    }
+
+    .goal-card:hover {
+      border-color: var(--border-accent-lavender);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .goal-number {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--accent-mint);
+      flex-shrink: 0;
+    }
+
+    .goal-body h4 {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-highlight);
+      margin-bottom: 8px;
+    }
+
+    .goal-body p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       12. CONTACT SECTION
+       ========================================================================== */
+    .contact-card {
+      background: linear-gradient(145deg, rgba(19, 28, 49, 0.88), rgba(15, 23, 42, 0.96));
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 44px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-mint), var(--accent-lavender));
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 44px;
+      align-items: center;
+    }
+
+    .contact-info-col h3 {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text-highlight);
+      margin-bottom: 14px;
+      line-height: 1.25;
+    }
+
+    .contact-info-col p {
+      color: var(--text-secondary);
+      font-size: 0.98rem;
+      line-height: 1.65;
+      margin-bottom: 24px;
+    }
+
+    .email-display-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .email-meta-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .email-icon-circle {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: rgba(52, 211, 153, 0.12);
+      border: 1px solid var(--border-accent-mint);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-mint);
+      flex-shrink: 0;
+    }
+
+    .email-label-text {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .email-address-text {
+      font-size: 1.02rem;
+      font-weight: 600;
+      color: var(--text-highlight);
+      word-break: break-all;
+    }
+
+    .email-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .action-btn {
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-mail {
+      background: var(--accent-mint);
+      color: #06141d;
+    }
+    .btn-mail:hover {
+      background: #4ade80;
+    }
+
+    .btn-copy {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+    }
+    .btn-copy:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--border-light);
+    }
+
+    /* Social / External Profiles Card (Transparent Honest Placeholders) */
+    .social-placeholders {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .social-placeholders-title {
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .social-ph-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px dashed var(--border-light);
+      border-radius: var(--radius-sm);
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      width: 100%;
+      text-align: left;
+    }
+
+    .social-ph-link:hover {
+      background: rgba(167, 139, 250, 0.05);
+      border-color: var(--border-accent-lavender);
+      color: var(--text-primary);
+    }
+
+    .social-link-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ph-pill {
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* Toast Notification for Copying & Placeholder Clicks */
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: #1e293b;
+      border: 1px solid var(--border-accent-mint);
+      color: var(--text-primary);
+      padding: 12px 20px;
+      border-radius: var(--radius-md);
+      font-size: 0.88rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: var(--shadow-lg);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 9999;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast-icon {
+      color: var(--accent-mint);
+    }
+
+    /* ==========================================================================
+       13. FOOTER
+       ========================================================================== */
+    .site-footer {
+      border-top: 1px solid var(--border-subtle);
+      background: rgba(9, 13, 22, 0.95);
+      padding: 38px 0;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .footer-brand {
+      color: var(--text-primary);
+      font-weight: 600;
+      font-family: var(--font-heading);
+    }
+
+    .back-to-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-secondary);
+      font-size: 0.84rem;
+      transition: color var(--transition-fast);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .back-to-top:hover {
+      color: var(--accent-mint);
+      border-color: var(--border-accent-mint);
+    }
+
+    /* ==========================================================================
+       14. RESPONSIVE MEDIA QUERIES
+       ========================================================================== */
+    @media (max-width: 992px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+      .roadmap-steps {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      :root {
+        --nav-height: 68px;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: var(--nav-height);
+        left: 0;
+        width: 100%;
+        background: rgba(11, 16, 28, 0.98);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        flex-direction: column;
+        align-items: stretch;
+        padding: 24px;
+        gap: 10px;
+        border-bottom: 1px solid var(--border-light);
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-120%);
+        transition: transform var(--transition-normal);
+        pointer-events: none;
+      }
+
+      .nav-links.is-open {
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      .nav-item a {
+        padding: 12px 16px;
+        font-size: 1rem;
+      }
+
+      .nav-cta {
+        margin-left: 0;
+        margin-top: 8px;
+        justify-content: center;
+        padding: 12px;
+      }
+
+      .goals-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cert-placeholder-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+      }
+
+      .email-display-box {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .email-actions {
+        width: 100%;
+      }
+      .email-actions .action-btn {
+        flex: 1;
+        justify-content: center;
+      }
+
+      .contact-card {
+        padding: 30px 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .education-card {
+        grid-template-columns: 1fr;
+        padding: 22px;
+      }
+      .hero-card {
+        padding: 22px;
+      }
+      .hero-actions .btn {
+        width: 100%;
+      }
+    }
+
+    /* Accessibility: Reduced Motion Support */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+  <!-- ==========================================================================
+       HEADER & NAVIGATION BAR
+       ========================================================================== -->
+  <header class="site-header" id="navbar">
+    <div class="container nav-container">
+      <a href="#home" class="brand-logo" aria-label="Vidushi Singh - Home">
+        <span class="logo-badge" aria-hidden="true">VS</span>
+        <div class="brand-text">
+          <span class="brand-name">Vidushi Singh</span>
+          <span class="brand-sub">B.Tech CSE • First Year</span>
+        </div>
+      </a>
+
+      <!-- Mobile Hamburger Button -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primaryNav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Navigation Links -->
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-links" id="primaryNav">
+          <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+          <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="#education" class="nav-link">Education</a></li>
+          <li class="nav-item"><a href="#skills" class="nav-link">Skills & Interests</a></li>
+          <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+          <li class="nav-item"><a href="#certifications" class="nav-link">Milestones</a></li>
+          <li class="nav-item"><a href="#goals" class="nav-link">Goals</a></li>
+          <li class="nav-item">
+            <a href="#contact" class="nav-cta">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+              <span>Contact</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       MAIN CONTENT CONTAINER
+       ========================================================================== -->
+  <main id="main-content">
+
+    <!-- ========================================================================
+         SECTION 1: HOME (HERO)
+         ======================================================================== -->
+    <section id="home" class="hero-section" aria-label="Introduction">
+      <div class="container hero-grid">
+        
+        <div class="hero-content">
+          <div class="hero-pill">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            <span>First-Year CSE Student • JECRC University, Jaipur</span>
+          </div>
+
+          <h1 class="hero-headline">
+            Curious Today.<br>
+            <span class="gradient-text">Building for Tomorrow.</span>
+          </h1>
+
+          <p class="hero-intro">
+            I’m Vidushi Singh, a first-year Computer Science and Engineering student at JECRC University, Jaipur. I’m beginning my journey in technology, exploring AI and communication, and working toward building practical skills for my future career.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#about" class="btn btn-primary">
+              <span>About My Journey</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14"/>
+                <path d="m12 5 7 7-7 7"/>
+              </svg>
+            </a>
+
+            <a href="#contact" class="btn btn-secondary">
+              <span>Get in Touch</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Snapshot Card -->
+        <div class="hero-card-wrapper">
+          <div class="hero-card">
+            <div class="profile-card-header">
+              <div class="profile-avatar-ph" aria-hidden="true">VS</div>
+              <div class="profile-meta">
+                <h3>Vidushi Singh</h3>
+                <p>Aspiring Computer Science Engineer</p>
+              </div>
+            </div>
+
+            <div class="profile-stats">
+              <div class="stat-row">
+                <span class="stat-label">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                  Program
+                </span>
+                <span class="stat-val">B.Tech in CSE</span>
+              </div>
+
+              <div class="stat-row">
+                <span class="stat-label">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                  University
+                </span>
+                <span class="stat-val">JECRC University, Jaipur</span>
+              </div>
+
+              <div class="stat-row">
+                <span class="stat-label">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+                  Graduation
+                </span>
+                <span class="stat-val">2030 (First Year)</span>
+              </div>
+
+              <div class="stat-row">
+                <span class="stat-label">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+                  Core Areas
+                </span>
+                <span class="stat-val">Technology & AI</span>
+              </div>
+            </div>
+
+            <div class="hero-card-footer">
+              <span>Status: Active Undergrad</span>
+              <button class="copy-pill" id="quickCopyEmail" title="Copy email address">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+                  <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+                </svg>
+                <span>vidushisingh191@gmail.com</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         SECTION 2: ABOUT ME
+         ======================================================================== -->
+    <section id="about" aria-label="About Me">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">01 // Background</span>
+          <h2 class="section-title">About Me</h2>
+          <p class="section-desc">
+            A grounded glimpse into where I stand today and what drives my pursuit of engineering.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <!-- Main Narrative -->
+          <div class="about-narrative">
+            <p>
+              Hello! I am <strong>Vidushi Singh</strong>, currently a first-year undergraduate pursuing a <strong>B.Tech in Computer Science and Engineering</strong> at JECRC University, Jaipur, Rajasthan.
+            </p>
+            <p>
+              I am at the very beginning of my engineering journey. Rather than claiming advanced expertise, I take pride in being a dedicated, enthusiastic learner with a strong curiosity for how technology works and how Artificial Intelligence is shaping our everyday world.
+            </p>
+            <p>
+              I believe that becoming a proficient engineer requires patience, honest effort, and continuous practice. I look forward to building my foundation step by step, getting involved in college activities and event coordination, honing my communication skills, and preparing myself for meaningful future internships.
+            </p>
+          </div>
+
+          <!-- Highlights / Pillars -->
+          <div class="about-pillars">
+            <div class="pillar-card">
+              <div class="pillar-icon icon-mint">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                </svg>
+              </div>
+              <div class="pillar-text">
+                <h4>Beginner’s Mindset</h4>
+                <p>Approaching computing concepts with openness, curiosity, and disciplined consistency.</p>
+              </div>
+            </div>
+
+            <div class="pillar-card">
+              <div class="pillar-icon icon-lavender">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+                </svg>
+              </div>
+              <div class="pillar-text">
+                <h4>AI & Technology Curiosity</h4>
+                <p>Exploring modern computing trends and understanding how intelligent algorithms solve problems.</p>
+              </div>
+            </div>
+
+            <div class="pillar-card">
+              <div class="pillar-icon icon-blue">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+              </div>
+              <div class="pillar-text">
+                <h4>Communication & Teamwork</h4>
+                <p>Strengthening presentation, interpersonal skills, and collaboration through campus initiatives.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         SECTION 3: EDUCATION
+         ======================================================================== -->
+    <section id="education" aria-label="Education">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="section-tag">02 // Academic Pathway</span>
+          <h2 class="section-title">Education</h2>
+          <p class="section-desc">
+            My formal academic timeline, current university studies, and foundational schooling.
+          </p>
+        </div>
+
+        <div class="education-timeline">
+          
+          <!-- B.Tech Card -->
+          <article class="education-card">
+            <div class="edu-icon-container" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+              </svg>
+            </div>
+            
+            <div class="edu-content">
+              <div class="edu-meta">
+                <span class="edu-badge badge-ongoing">Currently Enrolled • 1st Year</span>
+                <span class="meta-item">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  Expected Graduation: 2030
+                </span>
+              </div>
+
+              <h3 class="edu-degree">Bachelor of Technology (B.Tech) in Computer Science & Engineering</h3>
+              
+              <div class="edu-institution">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>JECRC University, Jaipur, Rajasthan</span>
+              </div>
+
+              <p class="edu-details">
+                Commencing my engineering undergraduate curriculum with a focus on computing fundamentals, problem-solving, mathematics, and introductory programming concepts.
+              </p>
+
+              <div class="edu-footer-meta">
+                <span class="meta-item">Coursework: Computer Science & Engineering Core</span>
+                <span class="meta-item">Location: Jaipur, Rajasthan, India</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- School Qualification Card -->
+          <article class="education-card">
+            <div class="edu-icon-container" style="border-color: var(--border-accent-lavender); background: rgba(167, 139, 250, 0.12); color: var(--accent-lavender);" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/>
+                <path d="M6 6h10"/>
+                <path d="M6 10h10"/>
+              </svg>
+            </div>
+            
+            <div class="edu-content">
+              <div class="edu-meta">
+                <span class="edu-badge badge-completed">School Qualification</span>
+                <span class="meta-item">Completed</span>
+              </div>
+
+              <h3 class="edu-degree">Indian School Certificate (ISC)</h3>
+              
+              <div class="edu-institution" style="color: var(--accent-lavender);">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                <span>Senior Secondary Qualification</span>
+              </div>
+
+              <p class="edu-details">
+                Successfully completed the ISC senior secondary curriculum, providing a solid academic springboard in analytical thinking, language, and quantitative fundamentals prior to entering engineering college.
+              </p>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         SECTION 4: SKILLS & INTERESTS
+         ======================================================================== -->
+    <section id="skills" aria-label="Skills and Interests">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="section-tag">03 // Capabilities & Curiosities</span>
+          <h2 class="section-title">Skills & Interests</h2>
+          <p class="section-desc">
+            An authentic distinction between what I currently know and the technology domains I am passionately exploring.
+          </p>
+        </div>
+
+        <div class="skills-grid">
+          
+          <!-- Category 1: Current Knowledge -->
+          <div class="skills-category-card">
+            <div class="category-header">
+              <div class="cat-icon icon-mint" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6"/>
+                  <polyline points="8 6 2 12 8 18"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="category-title">Current Knowledge</h3>
+                <span class="category-subtitle">Confirmed foundational proficiencies</span>
+              </div>
+            </div>
+
+            <div class="skill-items-list">
+              <div class="skill-item">
+                <div class="skill-header">
+                  <span class="skill-name">Basic Computer Use</span>
+                  <span class="skill-level-tag tag-foundation">Foundation Level</span>
+                </div>
+                <p class="skill-desc">
+                  Comfortable with operating systems, essential desktop applications, file navigation, internet research, and day-to-day digital workflows.
+                </p>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-header">
+                  <span class="skill-name">Beginner-Level Programming</span>
+                  <span class="skill-level-tag tag-foundation">Currently Learning</span>
+                </div>
+                <p class="skill-desc">
+                  Developing an understanding of core programming logic, variables, control structures, and simple problem-solving through introductory coursework.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 2: Areas of Interest -->
+          <div class="skills-category-card">
+            <div class="category-header">
+              <div class="cat-icon icon-lavender" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2a8 8 0 0 0-8 8c0 3.3 2 6.1 5 7.4V20a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2.6c3-1.3 5-4.1 5-7.4a8 8 0 0 0-8-8z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="category-title">Areas of Interest</h3>
+                <span class="category-subtitle">Active learning and exploration areas</span>
+              </div>
+            </div>
+
+            <div class="skill-items-list">
+              <div class="skill-item">
+                <div class="skill-header">
+                  <span class="skill-name">Artificial Intelligence (AI)</span>
+                  <span class="skill-level-tag tag-interest">Exploration Area</span>
+                </div>
+                <p class="skill-desc">
+                  Fascinated by how machine learning models, intelligent algorithms, and generative tools are transforming problem-solving across modern industries.
+                </p>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-header">
+                  <span class="skill-name">Technology & Software Systems</span>
+                  <span class="skill-level-tag tag-interest">Exploration Area</span>
+                </div>
+                <p class="skill-desc">
+                  Curious about emerging tech stacks, the software development lifecycle, and the process of building reliable digital products.
+                </p>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-header">
+                  <span class="skill-name">Communication & Presentation</span>
+                  <span class="skill-level-tag tag-interest">Soft Skill Focus</span>
+                </div>
+                <p class="skill-desc">
+                  Actively working on articulating ideas clearly, delivering confident presentations, and engaging in constructive group discussions.
+                </p>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-header">
+                  <span class="skill-name">Event Coordination & Activities</span>
+                  <span class="skill-level-tag tag-interest">College Engagement</span>
+                </div>
+                <p class="skill-desc">
+                  Interested in organizing campus events, coordinating peer activities, and learning team management through active college involvement.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Note of Academic Integrity -->
+        <div class="skills-note-banner">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" x2="12" y1="8" y2="12"/>
+            <line x1="12" x2="12.01" y1="16" y2="16"/>
+          </svg>
+          <div>
+            <strong>Transparent Self-Assessment:</strong> These categories reflect my genuine starting point in first-year engineering. I avoid claiming proficiency in advanced frameworks or unverified tools until I have built hands-on projects with them.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         SECTION 5: PROJECTS (Honest Placeholder)
+         ======================================================================== -->
+    <section id="projects" aria-label="Projects">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="section-tag">04 // Portfolio Work</span>
+          <h2 class="section-title">Projects</h2>
+          <p class="section-desc">
+            A real-time look into my engineering build pipeline.
+          </p>
+        </div>
+
+        <div class="projects-container">
+          <div class="placeholder-card">
+            
+            <div class="placeholder-icon-wrap" aria-hidden="true">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m18 16 4-4-4-4"/>
+                <path d="m6 8-4 4 4 4"/>
+                <path d="m14.5 4-5 16"/>
+              </svg>
+            </div>
+
+            <!-- Mandatory required text -->
+            <p class="placeholder-quote">
+              “I’m currently building my foundation in computer science. This section will showcase my projects as I complete them.”
+            </p>
+
+            <p class="placeholder-subtext">
+              As a first-year student, I am investing time in core programming concepts, computational thinking, and clean logic before publishing independent software projects.
+            </p>
+
+            <!-- Learning Sandbox / Roadmap Steps -->
+            <div class="roadmap-steps">
+              <div class="step-box">
+                <span class="step-num">Step 01</span>
+                <div class="step-title">Core Fundamentals</div>
+                <div class="step-desc">Mastering basic programming syntax, logic flows, and command-line utilities.</div>
+              </div>
+
+              <div class="step-box">
+                <span class="step-num">Step 02</span>
+                <div class="step-title">Mini Projects</div>
+                <div class="step-desc">Developing interactive scripts, algorithms, and practical class assignments.</div>
+              </div>
+
+              <div class="step-box">
+                <span class="step-num">Step 03</span>
+                <div class="step-title">Applied Systems & AI</div>
+                <div class="step-desc">Building hands-on software applications and exploring applied AI prototypes.</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!--
+          VIDUSHI'S FUTURE PROJECTS TEMPLATE:
+          When you complete a project, uncomment the HTML structure below and add your details:
+
+          <div class="card" style="margin-top: 24px;">
+            <h3 style="color: var(--accent-mint); font-family: var(--font-heading);">Project Name Here</h3>
+            <p style="color: var(--text-secondary); margin: 8px 0 16px;">
+              A brief description of what you built, what problem it solves, and what you learned.
+            </p>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <span class="skill-level-tag tag-foundation">Python</span>
+              <span class="skill-level-tag tag-interest">Algorithms</span>
+            </div>
+          </div>
+        -->
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         SECTION 6: CERTIFICATIONS & ACHIEVEMENTS (Honest Placeholder)
+         ======================================================================== -->
+    <section id="certifications" aria-label="Certifications and Achievements">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="section-tag">05 // Recognition & Growth</span>
+          <h2 class="section-title">Certifications & Milestones</h2>
+          <p class="section-desc">
+            Documenting verified courses, technical milestones, and university accomplishments as they occur.
+          </p>
+        </div>
+
+        <div class="cert-placeholder-card">
+          <div class="cert-icon-wrap" aria-hidden="true">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="6"/>
+              <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
+            </svg>
+          </div>
+
+          <div class="cert-text">
+            <h3>Milestones in Progress</h3>
+            <p>
+              I have not listed any unconfirmed certificates or formal achievements. This space will be updated as I complete verified coursework, earn recognized technical credentials, participate in hackathons, or achieve meaningful milestones during my university journey.
+            </p>
+          </div>
+        </div>
+
+        <!--
+          VIDUSHI'S FUTURE CERTIFICATIONS TEMPLATE:
+          When you earn a certificate or formal milestone, uncomment and adapt the template below:
+
+          <div class="card" style="margin-top: 24px;">
+            <h4 style="color: var(--accent-lavender); font-family: var(--font-heading);">Certificate Title</h4>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">Issued by: Platform or Organization • Date</p>
+          </div>
+        -->
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         SECTION 7: CAREER GOALS
+         ======================================================================== -->
+    <section id="goals" aria-label="Career Goals">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="section-tag">06 // Vision & Ambition</span>
+          <h2 class="section-title">Career Goals</h2>
+          <p class="section-desc">
+            My long-term aspiration is to evolve into a proficient, dependable engineer with practical technical acumen and real-world impact.
+          </p>
+        </div>
+
+        <div class="goals-grid">
+          
+          <div class="goal-card">
+            <div class="goal-number">01</div>
+            <div class="goal-body">
+              <h4>Master Strong Fundamentals</h4>
+              <p>
+                Solidify my understanding of core computer science subjects, including data structures, algorithms, discrete mathematics, and computer system organization.
+              </p>
+            </div>
+          </div>
+
+          <div class="goal-card">
+            <div class="goal-number">02</div>
+            <div class="goal-body">
+              <h4>Learn Programming & Clean Code</h4>
+              <p>
+                Move from beginner-level knowledge to writing confident, well-structured code across practical programming languages through deliberate problem-solving.
+              </p>
+            </div>
+          </div>
+
+          <div class="goal-card">
+            <div class="goal-number">03</div>
+            <div class="goal-body">
+              <h4>Explore AI & Build Practical Projects</h4>
+              <p>
+                Deepen my fascination with Artificial Intelligence and modern technology by applying theory into hands-on repositories, experiments, and helpful software tools.
+              </p>
+            </div>
+          </div>
+
+          <div class="goal-card">
+            <div class="goal-number">04</div>
+            <div class="goal-body">
+              <h4>Communication & Internship Readiness</h4>
+              <p>
+                Continuously sharpen my communication, presentation, and teamwork abilities to collaborate effectively in engineering teams and secure valuable internship opportunities.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         SECTION 8: CONTACT
+         ======================================================================== -->
+    <section id="contact" aria-label="Contact Information">
+      <div class="container">
+
+        <div class="contact-card">
+          <div class="contact-grid">
+            
+            <div class="contact-info-col">
+              <span class="section-tag" style="color: var(--accent-mint);">07 // Get In Touch</span>
+              <h3>Let’s Connect & Learn Together</h3>
+              <p>
+                Whether you would like to discuss engineering, share learning resources, collaborate on college initiatives, or connect with a driven first-year CSE student, my inbox is always open.
+              </p>
+
+              <!-- Email Display Box -->
+              <div class="email-display-box">
+                <div class="email-meta-left">
+                  <div class="email-icon-circle" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect width="20" height="16" x="2" y="4" rx="2"/>
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="email-label-text">Direct Email Address</div>
+                    <div class="email-address-text">vidushisingh191@gmail.com</div>
+                  </div>
+                </div>
+
+                <div class="email-actions">
+                  <!-- Functional mailto link -->
+                  <a href="mailto:vidushisingh191@gmail.com" class="action-btn btn-mail" title="Open in default email client">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <line x1="22" x2="11" y1="2" y2="13"/>
+                      <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                    </svg>
+                    <span>Send Email</span>
+                  </a>
+
+                  <!-- Functional Copy button -->
+                  <button class="action-btn btn-copy" id="copyEmailBtn" aria-label="Copy email address to clipboard">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+                      <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+                    </svg>
+                    <span id="copyBtnText">Copy</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Social Placeholders (Clearly marked until real URLs provided) -->
+            <div class="social-placeholders">
+              <span class="social-placeholders-title">External Profiles (Placeholders)</span>
+              
+              <!-- 
+                VIDUSHI'S LINKEDIN INTEGRATION NOTE:
+                To connect your real LinkedIn profile, change this button into an anchor tag:
+                <a href="https://linkedin.com/in/YOUR-PROFILE" target="_blank" rel="noopener noreferrer" class="social-ph-link">
+              -->
+              <button class="social-ph-link" data-profile="LinkedIn" aria-label="LinkedIn profile placeholder">
+                <div class="social-link-left">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #38bdf8;" aria-hidden="true">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                    <rect width="4" height="12" x="2" y="9"/>
+                    <circle cx="4" cy="4" r="2"/>
+                  </svg>
+                  <span>LinkedIn Profile</span>
+                </div>
+                <span class="ph-pill">Link Coming Soon</span>
+              </button>
+
+              <!-- 
+                VIDUSHI'S GITHUB INTEGRATION NOTE:
+                To connect your real GitHub profile, change this button into an anchor tag:
+                <a href="https://github.com/YOUR-USERNAME" target="_blank" rel="noopener noreferrer" class="social-ph-link">
+              -->
+              <button class="social-ph-link" data-profile="GitHub" aria-label="GitHub profile placeholder">
+                <div class="social-link-left">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #f1f5f9;" aria-hidden="true">
+                    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                    <path d="M9 18c-4.51 2-5-2-7-2"/>
+                  </svg>
+                  <span>GitHub Profile</span>
+                </div>
+                <span class="ph-pill">Link Coming Soon</span>
+              </button>
+
+              <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;">
+                * Profile buttons will be activated once official links are confirmed.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-left">
+        <span class="footer-brand">Vidushi Singh • Portfolio</span>
+        <span>B.Tech in Computer Science & Engineering (Class of 2030) • JECRC University</span>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 18px;">
+        <span>Built with clean HTML, CSS & Vanilla JavaScript</span>
+        <a href="#home" class="back-to-top" aria-label="Back to top">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="18 15 12 9 6 15"/>
+          </svg>
+          <span>Top</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Element for Interactive Feedback -->
+  <div class="toast" id="copyToast" role="alert" aria-live="polite">
+    <svg class="toast-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"/>
+    </svg>
+    <span id="toastMsg">Email copied to clipboard!</span>
+  </div>
+
+  <!-- ==========================================================================
+       VANILLA JAVASCRIPT
+       ========================================================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      // 1. Mobile Navigation Drawer Toggle
+      var menuToggle = document.getElementById('menuToggle');
+      var primaryNav = document.getElementById('primaryNav');
+      var navLinks = document.querySelectorAll('.nav-link, .nav-cta');
+
+      if (menuToggle && primaryNav) {
+        menuToggle.addEventListener('click', function () {
+          var isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+          menuToggle.setAttribute('aria-expanded', !isExpanded);
+          menuToggle.classList.toggle('is-open');
+          primaryNav.classList.toggle('is-open');
+        });
+
+        // Close menu when a navigation item is clicked
+        navLinks.forEach(function (link) {
+          link.addEventListener('click', function () {
+            menuToggle.classList.remove('is-open');
+            primaryNav.classList.remove('is-open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+
+        // Close menu on Escape key press
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && primaryNav.classList.contains('is-open')) {
+            menuToggle.classList.remove('is-open');
+            primaryNav.classList.remove('is-open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.focus();
+          }
+        });
+      }
+
+      // 2. Active Section Spy on Scroll
+      var sections = document.querySelectorAll('section[id]');
+      var navItems = document.querySelectorAll('.nav-item a.nav-link');
+
+      function updateActiveNav() {
+        var scrollPosition = window.scrollY + 140;
+
+        sections.forEach(function (section) {
+          var sectionTop = section.offsetTop;
+          var sectionHeight = section.offsetHeight;
+          var sectionId = section.getAttribute('id');
+
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            navItems.forEach(function (link) {
+              link.classList.remove('active');
+              if (link.getAttribute('href') === '#' + sectionId) {
+                link.classList.add('active');
+              }
+            });
+          }
+        });
+      }
+
+      window.addEventListener('scroll', updateActiveNav, { passive: true });
+
+      // 3. Email Copy Functionality with Accessible Feedback
+      var copyEmailBtn = document.getElementById('copyEmailBtn');
+      var quickCopyEmail = document.getElementById('quickCopyEmail');
+      var copyBtnText = document.getElementById('copyBtnText');
+      var copyToast = document.getElementById('copyToast');
+      var toastMsg = document.getElementById('toastMsg');
+      var emailToCopy = 'vidushisingh191@gmail.com';
+
+      function showToast(message) {
+        if (!copyToast) return;
+        toastMsg.textContent = message;
+        copyToast.classList.add('show');
+        setTimeout(function () {
+          copyToast.classList.remove('show');
+        }, 3200);
+      }
+
+      function handleCopyEmail() {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(emailToCopy).then(function () {
+            if (copyBtnText) copyBtnText.textContent = 'Copied!';
+            showToast('Email address copied to clipboard!');
+            setTimeout(function () {
+              if (copyBtnText) copyBtnText.textContent = 'Copy';
+            }, 2500);
+          }).catch(function () {
+            fallbackCopy(emailToCopy);
+          });
+        } else {
+          fallbackCopy(emailToCopy);
+        }
+      }
+
+      function fallbackCopy(text) {
+        var textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-9999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+          document.execCommand('copy');
+          if (copyBtnText) copyBtnText.textContent = 'Copied!';
+          showToast('Email address copied to clipboard!');
+          setTimeout(function () {
+            if (copyBtnText) copyBtnText.textContent = 'Copy';
+          }, 2500);
+        } catch (err) {
+          showToast('Failed to copy. Please select: ' + text);
+        }
+        document.body.removeChild(textArea);
+      }
+
+      if (copyEmailBtn) {
+        copyEmailBtn.addEventListener('click', handleCopyEmail);
+      }
+      if (quickCopyEmail) {
+        quickCopyEmail.addEventListener('click', handleCopyEmail);
+      }
+
+      // 4. Social Placeholder Tooltip/Toast Feedback
+      var placeholderBtns = document.querySelectorAll('.social-ph-link');
+      placeholderBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var profileName = this.getAttribute('data-profile');
+          showToast(profileName + ' profile will be linked here once finalized.');
+        });
+      });
+
+    })();
+  </script>
+</body>
+</html>
